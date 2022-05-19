@@ -1,15 +1,13 @@
-____
 # PEN-TESTING LABS. NMAP
-## Level - Easy
 ### _Stage 1. Reconnaissance phase_ | Fase de reconocimiento
 ____
-Como parte inicial de la fase de recolección de información, se debe verificar la conectividad hacia el equipo víctima, y la version de sistema que vamos a analizar, para esto utilizaremos el protocolo *_ICMP_*, para determinar mediante *_ttl_* la versión de sistema.
+Como parte inicial de la fase de recolección de información, se debe verificar la conectividad hacia el equipo víctima, y la version de sistema que vamos a analizar, para esto utilizaremos el protocolo _ICMP_, para determinar mediante _ttl_ la versión de sistema.
 
 > #### Verificar la conexión.
 ```bat
-    # ping -c 1 10.10.149.222
-    PING 10.10.149.222 (10.10.149.222) 56(84) bytes of data.
-    64 bytes from 10.10.149.222: icmp_seq=1 ttl=63 time=174 ms
+# ping -c 1 10.10.149.222
+  PING 10.10.149.222 (10.10.149.222) 56(84) bytes of data.
+  4 bytes from 10.10.149.222: icmp_seq=1 ttl=63 time=174 ms
 ```
 >*_Nota_*: el parametro *_-c_* de la traza icmp, permite enviar los paquetes asignados para la prueba, en el ejemplo anterior un solo paquete. Y como se pude interpretar, el ttl corresponde a una maquina linux.
 
@@ -18,8 +16,8 @@ Para la etapa de identificación de viulnerabilidades utilizamos la herramienta 
 
 > ###### Identicación de puertos y servicios con nmap. 65535 Puertos.
 ```bat
-    # nmap -p- -T5 -v -n 10.10.149.222
-    # nmap -sS --min-rate 5000 -p- -vvv -n -Pn --open 10.10.149.222 -oG allPorts
+# nmap -p- -T5 -v -n 10.10.149.222
+# nmap -sS --min-rate 5000 -p- -vvv -n -Pn --open 10.10.149.222 -oG allPorts
 ```
 A continuación el significado de los parametros de nmap.
 
