@@ -3,7 +3,7 @@
 ____
 Para crear una conexion reversa, en este caso, utilizaremos bin bash, por lo que se deben seguir los siguientes pasas
 
- #### 1. Script bash 
+#### 1. Script bash 
 ```bat
        │ File: reverse.sh
 ───────┼─────────────────────────────────────────────────────────────────────────────────────────
@@ -13,7 +13,7 @@ Para crear una conexion reversa, en este caso, utilizaremos bin bash, por lo que
 ```
 >*_Nota_*: En caso de no estar logueado con el usuario root, ejecutar con el comando sudo, para elevar privilegios, para validar que esta funcionando el servidor web podemos hacer una petición por el explorador a la ruta http://localhost:80/
 
-#### 2. Levantar servicio netcat
+#### 2. Iniciar servicio netcat
 
 Para ejecutar una shell reversa vamos a crear la comunicación utilizando el servicio de netcat o **_nc_**, para los amigos, y abrir un puerto de comunicación para poner en escucha. 
 >```bat

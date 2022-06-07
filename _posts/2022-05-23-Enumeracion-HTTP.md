@@ -5,7 +5,7 @@ ____
 El proceso de enumeración o fuzzing para un servicio http, se ejecuta mediante fuerza bruta, a continuación el script de nmap.
 
 ```bat
-    # nmap --script hhtp-enum -p80 10.10.149.222 -oN webScan 
+    # nmap --script http-enum -p80 10.10.149.222 -oN webScan 
 ```
 
 A continuación el resultado del script.
