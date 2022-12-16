@@ -65,7 +65,7 @@ ____
 Gobuster es una alternativa de enumeración de directorios para realizar fuzzing
 
 ```bat
-    # gobuster dir -k -u https://192.168.200.143:7080 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 10 -add-slash
+    # gobuster dir -k -u https://192.168.200.143:7080 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 10 --add-slash
 ```
 Acontinuación el resultado de correr el scritp
 
@@ -93,5 +93,6 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 >* *-k*: Pernmite saltar certificados de nocexiones https. 
 >* *-u*: Permite establecer la URL, a del servidor para enumerar dirctorios http://ip:port
 >* *-w*: Permite establer el directorio para hacer fuzzing.
+>* *--add-slash*: Agregar un '/', al final de la URL
 
 
