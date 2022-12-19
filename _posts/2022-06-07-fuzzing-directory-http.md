@@ -1,5 +1,5 @@
 # PEN-TESTING LABS. ENUMERACIÓN DIRECTORIOS FUZZING
-### _Stage 1. Wfuzz servidores http
+### Stage 1. Wfuzz servidores http
 ____
 La herramienta wfuzz, permite ejecutar la enumeración de rutas http, de manera automatizada, utilizando un diccionario para verificar las rutas.
 
@@ -28,7 +28,7 @@ ID           Response   Lines    Word       Chars       Payload
 ====================================================================
 000000185:   200        8 L      18 W       237 Ch      "submit"                                                                                                                            
 ```
-### _Stage 2. Enumeration using nmap | Enumeración mediante nmap
+### Stage 2. Enumeration using nmap | Enumeración mediante nmap
 ____
 
 El proceso de enumeración o fuzzing para un servicio http, se ejecuta mediante fuerza bruta, a continuación el script de nmap.
@@ -59,7 +59,7 @@ A continuación el resultado del script.
 En los resultados se puede evidenciar que tenemos una posible ruta de ingreso, por lo que, para tener mayor detalle se puede utilizar la herramienta whatweb 
 
 
-### _Stage 3. Enumeration using gobuster | Enumeración mediante gobuster
+### Stage 3. Enumeration using gobuster | Enumeración mediante gobuster
 ____
 
 Gobuster es una alternativa de enumeración de directorios para realizar fuzzing
