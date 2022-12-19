@@ -93,6 +93,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 >* *-k*: Pernmite saltar certificados de nocexiones https. 
 >* *-u*: Permite establecer la URL, a del servidor para enumerar dirctorios http://ip:port
 >* *-w*: Permite establer el directorio para hacer fuzzing.
+>* *-t 10*: Son el numero de hilos con los que se va a ejecutar la enumeración.
 >* *--add-slash*: Agregar un '/', al final de la URL
 
 
