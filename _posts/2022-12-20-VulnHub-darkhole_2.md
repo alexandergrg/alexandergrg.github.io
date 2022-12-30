@@ -18,7 +18,7 @@ Darkhole2 es una máquina Linux fácil con una de vulnhub.
 >   * Remot port forwarding
 > * Elevación de privilegios con privilegios SUID
 >   * Elevar privilegios usando python
-> * Fuzzing Directory, archivos git.
+> * Fuzzing Directory, archivos .git, manejo de repositorios GIT
 
 
 ## Enumeración y Escaneo
