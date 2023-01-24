@@ -4,7 +4,7 @@ ____
 Como parte inicial de la fase de recolección de información, se debe verificar la conectividad hacia el equipo víctima, y la version de sistema que vamos a analizar, para esto utilizaremos el protocolo _ICMP_, para determinar mediante _ttl_ la versión de sistema.
 
 > #### Verificar la conexión.
-```bat
+```java
 # ping -c 1 10.10.149.222
   PING 10.10.149.222 (10.10.149.222) 56(84) bytes of data.
   4 bytes from 10.10.149.222: icmp_seq=1 ttl=63 time=174 ms
@@ -15,7 +15,7 @@ Como parte inicial de la fase de recolección de información, se debe verificar
 Para la etapa de identificación de viulnerabilidades utilizamos la herramienta *_nmap_*, que servirá para verificar los servicioes y puertos expuestos.
 
 > ###### Identicación de puertos y servicios con nmap. 65535 Puertos.
-```bat
+```java
 # nmap -p- -T5 -v -n 10.10.149.222
 # nmap -sS --min-rate 5000 -p- -vvv -n -Pn --open 10.10.149.222 -oG allPorts
 ```
@@ -33,7 +33,7 @@ A continuación el significado de los parametros de nmap.
 
 > ###### Resultadoformato grepeable -oG
 
-```bat
+```java
        │ File: allPorts
  ──────┼───────────────────────────────────────────────────────────────────────────────────────────────────       
    1   │ # Nmap 7.92 scan initiated Wed May 18 22:04:49 2022 as: nmap -sS --min-rate 5000 -p- -vvv -n -Pn --open 10.10.149.222 -oG allPorts 
@@ -44,7 +44,7 @@ A continuación el significado de los parametros de nmap.
 ```
 Una vez escaneado se puede evidenciar que encontró abierto los puertos 22 y 80, para lo que se puede ejecutar un escaneo mejorado a nivel se scritps con nmap.
 
-```bat
+```java
     # nmap -sC -sV -p22,80 10.10.149.222 -oN targeted 
 ```
 
@@ -55,7 +55,7 @@ A continuación el significado de los parametros de nmap.
 >* *_-p22,80_*: Que se escanee sobre esos puertos.
 >* *_-oN_*: Exporte en formato nmap.
 
-````bat 
+````java
        │ File: targeted
  ──────┼───────────────────────────────────────────────────────────────────────────────────────────────────
    1   │ # Nmap 7.92 scan initiated Tue Apr 26 23:00:32 2022 as: nmap -sC -sV -p22,80 -oN targeted 10.10.149.222
@@ -78,7 +78,7 @@ A continuación el significado de los parametros de nmap.
 ````
 Una vez identificado que existe un servidor web se puede utilizar fuzzing, para validar rutas o archivos, para lo que seguiremos utilizando nmap.
 
-```bat
+```java
     # nmap --script hhtp-enum -p80 10.10.149.222 -oN webScan 
 ```
 A continuación el significado de los parametros de nmap.
@@ -86,7 +86,7 @@ A continuación el significado de los parametros de nmap.
 >* *_--script_*: Ejecuta escaneo mediante script de nmap.
 >* *_http-enum_*: Script de enumeración.
 
-```bat
+```java
        │ File: webScan
 ───────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
    1   │ # Nmap 7.92 scan initiated Wed May 18 22:40:56 2022 as: nmap --script http-enum -p80 -oN webScan 10.10.149.222
@@ -103,3 +103,13 @@ A continuación el significado de los parametros de nmap.
 ```
 En los resultados se puede evidenciar que tenemos una posible ruta de ingreso, por lo que, para tener mayor detalle se puede utilizar la herramienta whatweb 
 
+#### Escaneo de nmap con proxychains con hilos
+
+```java                                                                                                                                                                                        
+┌──(root㉿kali)-[/home/…/CTF/vulnhub/corrosion2/nmap]
+└─# seq 1 65535 | xargs -P 50 -I{} proxychains nmap -p{} -sT -Pn --open -T5 -vvvv -n 192.168.210.129 -oG allPortsc1 2>/dev/null | grep open
+Discovered open port 22/tcp on 192.168.210.129
+22/tcp open  ssh     syn-ack
+Discovered open port 80/tcp on 192.168.210.129
+80/tcp open  http    syn-ack
+```
