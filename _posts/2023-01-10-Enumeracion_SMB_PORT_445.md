@@ -65,3 +65,34 @@ smb: \> dir
                 7282168 blocks of size 1024. 5386540 blocks available
 smb: \> 
 ```
+### Scanear Recursos Compartidos crackmapexec 
+Aprovechando que el puerto smb esta abierto podemo ennumerar los recursos compartidos utilzando crackmapexec.
+```java
+┌──(root㉿kali)-[/home/…/CTF/HTB/legacy/content]
+└─# crackmapexec smb 10.10.10.4
+[*] First time use detected
+[*] Creating home directory structure
+[*] Creating default workspace
+[*] Initializing SMB protocol database
+[*] Initializing FTP protocol database
+[*] Initializing MSSQL protocol database
+[*] Initializing WINRM protocol database
+[*] Initializing SSH protocol database
+[*] Initializing RDP protocol database
+[*] Initializing LDAP protocol database
+[*] Copying default configuration file
+[*] Generating SSL certificate
+SMB         10.10.10.4      445    LEGACY           [*] Windows 5.1 (name:LEGACY) (domain:legacy) (signing:False) (SMBv1:True)
+```
+Para listar los recursos compartidos
+
+```java
+┌──(root㉿kali)-[/home/…/CTF/HTB/legacy/content]
+└─# crackmapexec smb 10.10.10.4 -u 'null' -p '' --shares           
+SMB         10.10.10.4      445    LEGACY           [*] Windows 5.1 (name:LEGACY) (domain:legacy) (signing:False) (SMBv1:True)
+SMB         10.10.10.4      445    LEGACY           [-] legacy\null: STATUS_LOGON_FAILURE 
+```                                                                                          
+
+
+
+

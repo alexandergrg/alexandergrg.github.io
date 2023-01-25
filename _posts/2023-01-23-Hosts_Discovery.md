@@ -18,3 +18,17 @@ La dirección IP 1 está activa
 La dirección IP 128 está activa
 La dirección IP 129 está activa
 ```
+
+
+## TCPDUMP
+realizamos una prueba de conexion poniendo en escucha una conexion icpm mediante tcpdump. Para lanzar el exploit debemos ejecutar el exploit con el named pipes encontrado.
+
+```java
+┌──(root㉿kali)-[/home/…/CTF/HTB/legacy/nmap]
+└─# tcpdump -i tun0 icmp -n -v 
+tcpdump: listening on tun0, link-type RAW (Raw IP), snapshot length 262144 bytes
+```
+> * **-i.-** Flag para especificar interface.
+> * **tun0.-** Nombre la interface que se pone en escucha.
+> * **-n.-** Flag que evita resolucion dns.
+> * **-v.-** Flag verbose.
