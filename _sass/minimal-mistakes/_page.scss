@@ -18,6 +18,14 @@
   
   
   
+  
+   left: 50;
+  
+  
+  
+  
+  
+  
   @include breakpoint($x-large) {
     max-width: $max-width;
   }
