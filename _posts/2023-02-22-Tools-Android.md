@@ -6,7 +6,8 @@ es una herramienta de línea de comandos incluida en el kit de desarrollo de sof
 `sudo apt-get install android-tools-adb
 `
 ### Escaneos Nmap 
-```java   
+```java
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ┌──(root㉿kali)-[/home/s3cur1ty3c/CTF]
 └─# nmap -p- --open -sS --min-rate 4000 -vvvv -n -Pn 192.168.200.161 -oG allPorts
 Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times may be slower.
@@ -30,26 +31,32 @@ MAC Address: 00:0C:29:40:6D:AC (VMware)
 Read data files from: /usr/bin/../share/nmap
 Nmap done: 1 IP address (1 host up) scanned in 67.82 seconds
            Raw packets sent: 165329 (7.274MB) | Rcvd: 25071 (1.003MB)
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```                                                                     
 Se puede verificar que el puerto `5555` esta abierto, y para conectarnos utilizaremos la herramienta `adb`
 ### adb connect ip:port
 El comando adb connect ip:port se utiliza para conectarse a un dispositivo Android a través de una red TCP/IP en lugar de una conexión USB. Este comando permite que un dispositivo Android y una computadora se comuniquen entre sí a través de una red inalámbrica en lugar de una conexión por cable USB.
-```java                                                         
+```java
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────                                                     
 ┌──(root㉿kali)-[/home/s3cur1ty3c/CTF/HTB]
 └─# adb connect 192.168.200.161:5555 
 connected to 192.168.200.161:5555
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 ### adb devices
 `adb devices`.- Si el dispositivo está conectado y configurado correctamente, deberías ver una lista de dispositivos conectados en la salida del comando. Una vez que estés conectado al dispositivo Android, puedes utilizar los comandos de ADB para realizar tareas de pentesting, como la recopilación de información, la ejecución de comandos remotos en el dispositivo y la identificación de vulnerabilidades.
-```java                                                    
+```java
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────                                            
 ┌──(root㉿kali)-[/home/s3cur1ty3c/CTF/HTB]
 └─# adb devices                     
 List of devices attached
 192.168.200.161:5555    device
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 ### adb shell
 El comando adb shell se utiliza para abrir una terminal de shell en un dispositivo Android conectado a través de ADB. Una vez que se ejecuta este comando, se establece una sesión de shell en el dispositivo Android y se puede interactuar con el sistema operativo Android a través de comandos de shell.
 ```ruby
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ┌──(root㉿kali)-[/home/s3cur1ty3c/CTF/HTB]
 └─# adb shell  
 x86_64:/ $ ls
@@ -62,7 +69,8 @@ config     fstab.android_x86_64 init.usb.configfs.rc   odm                 plat_
 x86_64:/ $ cd sdcard
 x86_64:/sdcard $ ls
 Alarms Android DCIM Download Movies Music Notifications Pictures Podcasts Ringtones 
-x86_64:/sdcard $ 
+x86_64:/sdcard $
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 Algunos ejemplos de comandos que se pueden ejecutar dentro de la sesión de shell de ADB incluyen:
 
