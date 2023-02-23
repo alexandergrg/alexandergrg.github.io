@@ -5,9 +5,11 @@ Como parte inicial de la fase de recolección de información, se debe verificar
 
 > #### Verificar la conexión.
 ```java
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 # ping -c 1 10.10.149.222
   PING 10.10.149.222 (10.10.149.222) 56(84) bytes of data.
   4 bytes from 10.10.149.222: icmp_seq=1 ttl=63 time=174 ms
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 >*_Nota_*: el parametro *_-c_* de la traza icmp, permite enviar los paquetes asignados para la prueba, en el ejemplo anterior un solo paquete. Y como se pude interpretar, el ttl corresponde a una maquina linux.
 

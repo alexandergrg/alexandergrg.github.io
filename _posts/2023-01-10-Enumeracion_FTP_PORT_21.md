@@ -14,6 +14,7 @@ El FTP anónimo es una forma común de obtener acceso a un servidor para ver o d
 #### FTP-tools
 
 ```java
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ┌──(root㉿kali)-[/home/s3cur1ty3c]
 └─# ftp 10.10.10.152     
 Connected to 10.10.10.152.
@@ -33,7 +34,7 @@ ftp> ls -la
 02-02-19  11:28PM       <DIR>          Program Files (x86)
 02-03-19  07:08AM       <DIR>          Users
 02-25-19  10:49PM       <DIR>          Windows
-                                                                                                                   
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────                                                                                                               
 ```
 En la ejecución anterior se puede evidenciar que no esta habilitado el usuario anónimo.
 

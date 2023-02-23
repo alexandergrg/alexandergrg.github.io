@@ -1,6 +1,6 @@
 # Tools Share Files
 ## SMB-Folder
----
+
 Impacket-smbserver es una herramienta de la suite Impacket, una colección de herramientas de seguridad diseñadas para interactuar con el protocolo SMB (Server Message Block). SMB es un protocolo de red utilizado para compartir archivos y recursos en una red de computadoras.
 
 ```java

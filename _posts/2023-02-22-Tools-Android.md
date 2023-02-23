@@ -1,6 +1,5 @@
 # TOOLS MOVIL ANDROID
 ## ADB (Android Debug Bridge)
-___
 es una herramienta de línea de comandos incluida en el kit de desarrollo de software de Android (SDK) que se utiliza principalmente para el desarrollo y la depuración de aplicaciones de Android. ADB proporciona una interfaz de comunicación entre un dispositivo Android y una computadora, lo que permite a los desarrolladores interactuar con dispositivos Android desde la línea de comandos de una computadora.
 ### Instalar
 `sudo apt-get install android-tools-adb
