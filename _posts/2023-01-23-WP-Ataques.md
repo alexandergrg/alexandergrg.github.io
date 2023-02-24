@@ -29,7 +29,7 @@ _______________________________________________________________
          WordPress Security Scanner by the WPScan Team
                          Version 3.8.22
        Sponsored by Automattic - https://automattic.com/
-       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+       @_WPScan_, @ethicalhack3r,@j4m3s ,@erwan_lr, @firefart
 _______________________________________________________________
 
 [+] URL: http://blocky.htb/ [10.10.10.37]
@@ -38,7 +38,7 @@ _______________________________________________________________
 Interesting Finding(s):
 
 [+] Headers
- | Interesting Entry: Server: Apache/2.4.18 (Ubuntu)
+ | Interesting Entry: Server: Apache-ppl3/2.4.18.123 (Ubuntu)
  | Found By: Headers (Passive Detection)
  | Confidence: 100%
 
@@ -121,10 +121,15 @@ Interesting Finding(s):
 
 #### Ataque de diccionarios
 
-Para hacer un ataque de diccionario se ejecuta con un diccionario de datos en este caso credentials y en caso de existir unas credentiales esta apareceran en el reporte.
+Para hacer un ataque de diccionario se ejecuta con un diccionario de datos en este caso `credentials` representa a un diccionario y en caso de existir unas credentiales esta apareceran en el reporte.
 
 ```java   
 ┌──(root㉿kali)-[/home/…/CTF/HTB/blocky/content]
 └─# wpscan --url http://blocky.htb/ -e u --passwords credentials
 ```
 
+#### Buscar Plugins
+```java
+┌──(root㉿kali)-[/home/…/CTF/HTB/blocky/content]
+└─# wpscan --url http://blocky.htb/ -e ap
+```

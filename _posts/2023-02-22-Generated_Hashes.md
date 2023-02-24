@@ -19,3 +19,9 @@ SHA1SUM es una herramienta de software que se utiliza para verificar la integrid
 48124d6dc3b2e693a207667c32ac672414913994  -
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
+
+### Decodificar base 
+```ruby
+┌──(root㉿kali)-[/home/…/CTF/HTB/blue/content]
+└─# echo -n "5d41402abc4b2a76b9719d911017c592" | base64 --decode
+```

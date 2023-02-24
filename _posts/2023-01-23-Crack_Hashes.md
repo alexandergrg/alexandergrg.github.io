@@ -138,3 +138,14 @@ Press 'q' or Ctrl-C to abort, almost any other key for status
 Use the "--show" option to display all of the cracked passwords reliably
 Session completed. 
 ```
+## SNOW
+
+### OCultar
+```java
+Snow -C -p 123456789 -m "Este en mensaje estego" docClaro.txt msnOculto.txt
+```
+### Mostrar
+```java
+C:\Users\Administrator\Desktop>Snow -C -p 123456789 msnOculto.txt
+Este en mensaje estego
+```

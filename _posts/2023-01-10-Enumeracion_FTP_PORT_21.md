@@ -20,12 +20,12 @@ El FTP anónimo es una forma común de obtener acceso a un servidor para ver o d
 Connected to 10.10.10.152.
 220 Microsoft FTP Service
 Name (10.10.10.152:s3cur1ty3c): anonymous
-331 Anonymous access allowed, send identity (e-mail name) as password.
+331 Anonymous access allowed, send identity (e-mail adm) as password.
 Password: 
 230 User logged in.
 Remote system type is Windows_NT.
 ftp> ls -la
-229 Entering Extended Passive Mode (|||49934|)
+229 Entering Extended Passive Mode shdw (|||123|)
 125 Data connection already open; Transfer starting.
 02-02-19  11:18PM                 1024 .rnd
 02-25-19  09:15PM       <DIR>          inetpub

@@ -4,10 +4,11 @@
 "Chisel" es una herramienta de red desarrollada por Jpillora, es un tunel de proxy TCP, construido sobre la librería de Go "github.com/aws/aws-sdk-go/aws" y "golang.org/x/net/websocket". Es una herramienta que permite conectarse a una red privada a través de una conexión a Internet pública. `chisel client [server-host] [local-port]:[remote-port]`
 Reducción del tamaño de chisel.
 ```java
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ┌──(root㉿kali)-[/home/…/CTF/vulnhub/corrosion2/content]
 └─# du -hc chisel
 7,8M    chisel
-7,8M    total                                                                                                                                                                                         
+7,8M    total                                                                     
 ┌──(root㉿kali)-[/home/…/CTF/vulnhub/corrosion2/content]
 └─# upx chisel 
                        Ultimate Packer for eXecutables
@@ -16,11 +17,12 @@ UPX 3.96        Markus Oberhumer, Laszlo Molnar & John Reiser   Jan 23rd 2020
         File size         Ratio      Format      Name
    --------------------   ------   -----------   -----------
    8077312 ->   3107968   38.48%   linux/amd64   chisel 
-Packed 1 file.                                                                                                                                                                               
+Packed 1 file.                                                    
 ┌──(root㉿kali)-[/home/…/CTF/vulnhub/corrosion2/content]
 └─# du -hc chisel   
 3,0M    chisel
 3,0M    total
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```                            
 Nos movemos a la carpeta /dev/shm "optional" y desde ahi descargarmos chisel y dar permisos de ejecución.
 ```java

@@ -10,6 +10,7 @@ Por ejemplo, en Windows, SMB puede ejecutarse directamente sobre TCP/IP sin nece
 ### Scanear Recursos Compartidos smbmap
 
 ```ruby
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ┌──(root㉿kali)-[/home/…/CTF/vulnhub/venom1/nmap]
 └─# smbmap -H 192.168.200.150 
 [+] Guest session       IP: 192.168.200.150:445 Name: venom.box                                         
@@ -17,7 +18,7 @@ Por ejemplo, en Windows, SMB puede ejecutarse directamente sobre TCP/IP sin nece
         ----                                                    -----------     -------
         print$                                                  NO ACCESS       Printer Drivers
         IPC$                                                    NO ACCESS       IPC Service (venom server (Samba, Ubuntu))
-                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 En la ejecución anterior se puede evidenciar que existe recursos compartidos, sin embargo, no hay accesos.
 
@@ -92,7 +93,6 @@ SMB         10.10.10.4      445    LEGACY           [*] Windows 5.1 (name:LEGACY
 SMB         10.10.10.4      445    LEGACY           [-] legacy\null: STATUS_LOGON_FAILURE 
 ```                                                                                          
 ### Pass The Hash
-
 "Pass the Hash" (PtH) es una técnica utilizada por los atacantes en ciberseguridad para obtener acceso a sistemas y redes mediante el uso de hashes de contraseñas en lugar de la contraseña real. En lugar de adivinar o romper la contraseña de un usuario, los atacantes utilizan herramientas para extraer los hashes de las contraseñas almacenados en un sistema y luego utilizar esos hashes para autenticarse en el sistema como si tuvieran la contraseña real. Esto les permite obtener acceso a los recursos protegidos por el usuario afectado.
 ```java
 ┌──(root㉿kali)-[/home/s3cur1ty3c]

