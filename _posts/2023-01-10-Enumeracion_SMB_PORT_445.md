@@ -132,3 +132,7 @@ C:\Windows\system32>whoami
 nt authority\system
 C:\Windows\system32>
 ```
+
+## Netstat
+
+nbtstat -A 204.224.150.3

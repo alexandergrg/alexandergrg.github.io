@@ -140,7 +140,7 @@ Session completed.
 ```
 ## SNOW
 
-### OCultar
+### OCultar o openstego
 ```java
 Snow -C -p 123456789 -m "Este en mensaje estego" docClaro.txt msnOculto.txt
 ```
@@ -149,3 +149,19 @@ Snow -C -p 123456789 -m "Este en mensaje estego" docClaro.txt msnOculto.txt
 C:\Users\Administrator\Desktop>Snow -C -p 123456789 msnOculto.txt
 Este en mensaje estego
 ```
+
+### Discifrar hashes
+
+https://hashes.com/en/decrypt/hash
+
+
+###  In Kali
+ $hash-identifier  
+   
+ #Decrypt Hashes
+ hashcat '5f4dcc3b5aa765d61d8327deb882cf99' /usr/share/wordlists/rockyou.txt
+
+### CrypTool : Encode/Decode Text (File Extension is .hex)
+File → New → Enter Text → Encrypt/Decrypt → Symmetric (Modern) → RC2 → KEY 05 → Encrypt
+
+File → Open → Encrypt/Decrypt → Symmetric (Modern) → RC2 → KEY 05 → Decrypt

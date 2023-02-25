@@ -32,3 +32,11 @@ tcpdump: listening on tun0, link-type RAW (Raw IP), snapshot length 262144 bytes
 > * **tun0.-** Nombre la interface que se pone en escucha.
 > * **-n.-** Flag que evita resolucion dns.
 > * **-v.-** Flag verbose.
+
+## Net Discover
+```java
+netdiscover -i eth0 -r 192.168.1.0/24 -s 100
+
+netdiscover -r 192.168.29.1/24
+ping <host-ip> -f -l 1300
+```

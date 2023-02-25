@@ -52,3 +52,18 @@ FTP         10.10.10.152    21     10.10.10.152     [+] anonymous:anonymous
 > - **-u anonymous:** especifica el nombre de usuario a utilizar para la autenticación. En este caso, el nombre de usuario es "anonymous".
 > - **-p anonymous:** especifica la contraseña a utilizar para la autenticación. En este caso, la contraseña es "anonymous".
 > - **-o listusers:** especifica la acción que se debe realizar después de la autenticación. En este caso, la acción es listar los usuarios del servicio FTP.
+
+
+####  SNMP Enumeration
+nmap -sU -p 161 10.10.1.2
+nmap -sU -p 161 --script=snmp-brute 10.10.1.2
+
+# Expoilt SNMP with Metasploit
+msfdb init && msfconsole ↵
+use auxilary/scanner/snmp/snmp_login ↵
+set RHOSTS 10.10.1.2 ↵
+exploit ↵
+  
+use auxilary/scanner/snmp/snmp_enum ↵
+set RHOSTS 10.10.1.2 ↵
+exploit ↵

