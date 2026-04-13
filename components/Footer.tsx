@@ -45,8 +45,8 @@ export function Footer() {
         </div>
 
         <div className="mt-6 pt-4" style={{ borderTop: '1px solid #27272a' }}>
-          <p className="font-mono text-xs text-center" style={{ color: '#a1a1aa' }}>
-            © {new Date().getFullYear()} Alexander González — construido con Next.js · Tailwind · MDX
+          <p className="font-mono text-xs text-center" style={{ color: '#52525b' }}>
+            © {new Date().getFullYear()} Alexander González · sec593.com
           </p>
         </div>
       </div>
