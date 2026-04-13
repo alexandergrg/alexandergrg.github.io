@@ -1,0 +1,47 @@
+---
+title: "Enumeración SMB en entornos Windows — guía práctica"
+date: "2024-06-20"
+tags: ["SMB", "Windows", "CrackMapExec", "nmap", "enum4linux"]
+category: "technique"
+area: "cyber"
+excerpt: "Metodología completa de enumeración SMB: shares, usuarios, políticas de contraseñas y detección de vulnerabilidades con nmap, enum4linux y CrackMapExec."
+---
+
+## ¿Por qué SMB?
+
+SMB (Server Message Block) es uno de los protocolos más expuestos en redes Windows.
+Su correcta enumeración suele revelar shares accesibles sin autenticación, usuarios del dominio y vulnerabilidades críticas como MS17-010.
+
+## Fase 1 — Detección
+
+```bash
+nmap -p 139,445 --open -sV <red/CIDR>
+```
+
+## Fase 2 — Enumeración anónima
+
+```bash
+# Shares disponibles sin credenciales
+smbclient -N -L //<IP>
+
+# Enumeración completa
+enum4linux -a <IP>
+```
+
+## Fase 3 — CrackMapExec
+
+```bash
+# Verificar credenciales y listar shares
+crackmapexec smb <IP> -u <user> -p <pass> --shares
+
+# Spray de contraseñas
+crackmapexec smb <IP> -u users.txt -p passwords.txt --continue-on-success
+```
+
+## Detección de vulnerabilidades
+
+```bash
+nmap --script smb-vuln-* -p 445 <IP>
+```
+
+Los scripts más relevantes: `smb-vuln-ms17-010`, `smb-vuln-cve-2020-0796` (SMBGhost).

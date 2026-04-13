@@ -1,0 +1,51 @@
+---
+title: "Clasificación de texto con TF-IDF y Naive Bayes"
+date: "2025-09-15"
+tags: ["NLP", "TF-IDF", "scikit-learn", "Python", "Naive Bayes"]
+category: "nlp"
+area: "ml"
+dataset: "20 Newsgroups"
+tools: ["Python", "scikit-learn", "NLTK", "pandas"]
+excerpt: "Vectorización TF-IDF y clasificación supervisada con Naive Bayes y un pipeline de scikit-learn sobre el dataset 20 Newsgroups."
+hasNotebook: true
+hasCharts: false
+---
+
+## Objetivo
+
+Construir un pipeline de clasificación de texto usando TF-IDF como vectorizador y Multinomial Naive Bayes como clasificador.
+
+## Pipeline
+
+```python
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.datasets import fetch_20newsgroups
+from sklearn.metrics import classification_report
+
+# Datos
+data  = fetch_20newsgroups(subset='train')
+X, y  = data.data, data.target
+
+# Pipeline
+pipe = Pipeline([
+    ('tfidf', TfidfVectorizer(max_features=10_000, stop_words='english')),
+    ('clf',   MultinomialNB()),
+])
+
+pipe.fit(X, y)
+```
+
+## Evaluación
+
+```python
+from sklearn.datasets import fetch_20newsgroups
+test = fetch_20newsgroups(subset='test')
+y_pred = pipe.predict(test.data)
+print(classification_report(test.target, y_pred, target_names=test.target_names))
+```
+
+## Resultado
+
+Accuracy ~83% con configuración base. El pipeline es fácilmente extensible con `GridSearchCV` para optimizar `max_features`, `ngram_range` y el parámetro `alpha` del clasificador.
