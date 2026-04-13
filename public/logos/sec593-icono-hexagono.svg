@@ -1,0 +1,11 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="120" fill="transparent"/>
+  <polygon points="60,8 98,30 98,74 60,96 22,74 22,30" fill="none" stroke="#22d3ee" stroke-width="1.5"/>
+  <polygon points="60,8 98,30 98,74 60,96 22,74 22,30" fill="#22d3ee08"/>
+  <polygon points="60,20 86,34 86,62 60,76 34,62 34,34" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity=".3"/>
+  <line x1="60" y1="8" x2="60" y2="96" stroke="#22d3ee" stroke-width="0.5" opacity=".2"/>
+  <line x1="22" y1="30" x2="98" y2="74" stroke="#22d3ee" stroke-width="0.5" opacity=".2"/>
+  <line x1="98" y1="30" x2="22" y2="74" stroke="#22d3ee" stroke-width="0.5" opacity=".2"/>
+  <circle cx="60" cy="52" r="3" fill="#22d3ee"/>
+  <text x="60" y="57" text-anchor="middle" font-family="monospace" font-size="18" font-weight="700" fill="#22d3ee">S3C</text>
+</svg>

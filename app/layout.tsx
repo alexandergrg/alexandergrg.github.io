@@ -25,6 +25,10 @@ export const metadata: Metadata = {
     title: 'SEC-593 — Alexander González',
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon:    '/logos/sec593-favicon.svg',
+    apple:   '/logos/sec593-avatar.svg',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

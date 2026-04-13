@@ -1,6 +1,7 @@
 'use client'
 
-import Link from 'next/link'
+import Link  from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 type NavLink = {
@@ -45,25 +46,14 @@ export function Nav() {
         <div className="flex items-center justify-between h-14">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="flex items-center gap-1">
-              <span
-                className="font-mono text-sm font-bold tracking-wider"
-                style={{ color: activeAccent, transition: 'color 0.2s' }}
-              >
-                SEC
-              </span>
-              <span className="font-mono text-sm font-bold" style={{ color: '#3f3f46' }}>·</span>
-              <span className="font-mono text-sm font-bold tracking-wider" style={{ color: '#f4f4f5' }}>
-                593
-              </span>
-            </div>
-            <span
-              className="hidden sm:block text-xs border-l pl-3"
-              style={{ color: '#52525b', borderColor: '#27272a', fontFamily: 'Inter, sans-serif' }}
-            >
-              Cybersecurity · AI Research
-            </span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logos/sec593-logo-nav.svg"
+              alt="SEC-593"
+              width={140}
+              height={31}
+              priority
+            />
           </Link>
 
           {/* Nav links — desktop */}

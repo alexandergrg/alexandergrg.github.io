@@ -1,0 +1,6 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" fill="#09090b"/>
+  <polygon points="24,3 43,13 43,35 24,45 5,35 5,13" fill="#09090b" stroke="#22d3ee" stroke-width="1.5"/>
+  <polygon points="24,3 43,13 43,35 24,45 5,35 5,13" fill="#22d3ee10"/>
+  <text x="24" y="29" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" fill="#22d3ee">S3C</text>
+</svg>

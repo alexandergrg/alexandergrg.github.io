@@ -1,0 +1,11 @@
+<svg width="280" height="72" viewBox="0 0 280 72" xmlns="http://www.w3.org/2000/svg">
+  <rect width="280" height="72" fill="transparent"/>
+  <polygon points="36,12 56,12 64,26 56,42 36,42 28,26" fill="none" stroke="#22d3ee" stroke-width="1.5"/>
+  <polygon points="36,12 56,12 64,26 56,42 36,42 28,26" fill="#22d3ee10"/>
+  <line x1="36" y1="12" x2="56" y2="42" stroke="#22d3ee" stroke-width="0.5" opacity=".4"/>
+  <line x1="56" y1="12" x2="36" y2="42" stroke="#22d3ee" stroke-width="0.5" opacity=".4"/>
+  <text x="46" y="32" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#22d3ee">S3C</text>
+  <text x="82" y="34" font-family="monospace" font-size="26" font-weight="700" fill="#f4f4f5" letter-spacing="1">SEC</text>
+  <text x="152" y="34" font-family="monospace" font-size="26" font-weight="700" fill="#22d3ee" letter-spacing="1">593</text>
+  <text x="82" y="50" font-family="monospace" font-size="9" fill="#52525b" letter-spacing="3">CYBERSECURITY</text>
+</svg>

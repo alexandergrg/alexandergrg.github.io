@@ -9,6 +9,7 @@ const social = [
   { label: 'GitHub',   href: 'https://github.com/alexandergrg' },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/alexandergrg' },
   { label: 'GitLab',   href: 'https://gitlab.com/alexandergrg' },
+  { label: 'contact@sec593.com', href: 'mailto:contact@sec593.com' },
 ]
 
 export default function AboutPage() {

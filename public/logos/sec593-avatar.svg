@@ -1,0 +1,12 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#09090b"/>
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#22d3ee" stroke-width="2"/>
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity=".25"/>
+  <circle cx="100" cy="100" r="8" fill="#22d3ee"/>
+  <line x1="100" y1="10" x2="100" y2="190" stroke="#22d3ee" stroke-width="0.5" opacity=".2"/>
+  <line x1="10" y1="100" x2="190" y2="100" stroke="#22d3ee" stroke-width="0.5" opacity=".2"/>
+  <line x1="36" y1="36" x2="164" y2="164" stroke="#22d3ee" stroke-width="0.5" opacity=".15"/>
+  <line x1="164" y1="36" x2="36" y2="164" stroke="#22d3ee" stroke-width="0.5" opacity=".15"/>
+  <text x="100" y="108" text-anchor="middle" font-family="monospace" font-size="36" font-weight="700" fill="#22d3ee">SEC</text>
+  <text x="100" y="148" text-anchor="middle" font-family="monospace" font-size="24" font-weight="700" fill="#e6edf3">593</text>
+</svg>
